@@ -67,7 +67,7 @@
             // 
             this.menuOpenFile.Name = "menuOpenFile";
             this.menuOpenFile.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.menuOpenFile.Size = new System.Drawing.Size(180, 22);
+            this.menuOpenFile.Size = new System.Drawing.Size(179, 22);
             this.menuOpenFile.Text = "Open ISO image";
             this.menuOpenFile.Click += new System.EventHandler(this.MenuOpenFile_Click);
             // 
@@ -75,7 +75,7 @@
             // 
             this.menuExit.Name = "menuExit";
             this.menuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuExit.Size = new System.Drawing.Size(180, 22);
+            this.menuExit.Size = new System.Drawing.Size(179, 22);
             this.menuExit.Text = "Exit";
             this.menuExit.Click += new System.EventHandler(this.MenuExit_Click);
             // 
