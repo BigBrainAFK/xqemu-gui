@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace XQEMU_GUI
+namespace xqemu_gui
 {
     static class Program
     {

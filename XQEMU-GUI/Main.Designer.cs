@@ -1,4 +1,4 @@
-﻿namespace XQEMU_GUI
+﻿namespace xqemu_gui
 {
     partial class Main
     {
@@ -41,6 +41,7 @@
             this.lblLoaded = new System.Windows.Forms.Label();
             this.openISODialog = new System.Windows.Forms.OpenFileDialog();
             this.messageQueue1 = new System.Messaging.MessageQueue();
+            this.ejectISOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mstMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +59,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuOpenFile,
+            this.ejectISOToolStripMenuItem,
             this.menuExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -67,7 +69,7 @@
             // 
             this.menuOpenFile.Name = "menuOpenFile";
             this.menuOpenFile.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.menuOpenFile.Size = new System.Drawing.Size(179, 22);
+            this.menuOpenFile.Size = new System.Drawing.Size(180, 22);
             this.menuOpenFile.Text = "Open ISO image";
             this.menuOpenFile.Click += new System.EventHandler(this.MenuOpenFile_Click);
             // 
@@ -75,7 +77,7 @@
             // 
             this.menuExit.Name = "menuExit";
             this.menuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuExit.Size = new System.Drawing.Size(179, 22);
+            this.menuExit.Size = new System.Drawing.Size(180, 22);
             this.menuExit.Text = "Exit";
             this.menuExit.Click += new System.EventHandler(this.MenuExit_Click);
             // 
@@ -93,18 +95,19 @@
             // 
             this.menuSkipAnimation.CheckOnClick = true;
             this.menuSkipAnimation.Name = "menuSkipAnimation";
-            this.menuSkipAnimation.Size = new System.Drawing.Size(178, 22);
+            this.menuSkipAnimation.Size = new System.Drawing.Size(180, 22);
             this.menuSkipAnimation.Text = "Skip Bootanimation";
+            this.menuSkipAnimation.Click += new System.EventHandler(this.MenuSkipAnimation_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // menuOptions
             // 
             this.menuOptions.Name = "menuOptions";
-            this.menuOptions.Size = new System.Drawing.Size(178, 22);
+            this.menuOptions.Size = new System.Drawing.Size(180, 22);
             this.menuOptions.Text = "Options";
             this.menuOptions.Click += new System.EventHandler(this.MenuOptions_Click);
             // 
@@ -143,6 +146,14 @@
             this.messageQueue1.MessageReadPropertyFilter.LookupId = true;
             this.messageQueue1.SynchronizingObject = this;
             // 
+            // ejectISOToolStripMenuItem
+            // 
+            this.ejectISOToolStripMenuItem.Name = "ejectISOToolStripMenuItem";
+            this.ejectISOToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
+            this.ejectISOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ejectISOToolStripMenuItem.Text = "Eject ISO";
+            this.ejectISOToolStripMenuItem.Click += new System.EventHandler(this.EjectISOToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,6 +190,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuSkipAnimation;
         private System.Windows.Forms.OpenFileDialog openISODialog;
         private System.Messaging.MessageQueue messageQueue1;
+        private System.Windows.Forms.ToolStripMenuItem ejectISOToolStripMenuItem;
     }
 }
 
