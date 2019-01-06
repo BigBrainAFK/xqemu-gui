@@ -13,6 +13,8 @@ namespace xqemu_gui
         private IConfig configController;
         string selectedISO = "";
         bool skipAnim = false;
+        bool HAXM = false;
+        bool GL = false;
 
         public Main()
         {
@@ -25,6 +27,10 @@ namespace xqemu_gui
 
             skipAnim = configGeneral.GetBoolean("Skip_Animation", false);
             menuSkipAnimation.Checked = skipAnim;
+            HAXM = configGeneral.GetBoolean("HAXM_Acceleration", false);
+            menuHAXM.Checked = HAXM;
+            GL = configGeneral.GetBoolean("GL", false);
+            menuGL.Checked = GL;
         }
 
         private void MenuOptions_Click(object sender, EventArgs e)
@@ -98,6 +104,7 @@ namespace xqemu_gui
 
             configGeneral.Set("Recent_ISO", "");
             configGeneral.Set("Skip_Animation", false);
+            configGeneral.Set("HAXM_Acceleration", false);
             configGeneral.Set("Games_Folder", "");
             configGeneral.Set("MCPX", "");
             configGeneral.Set("BIOS", "");
@@ -159,24 +166,30 @@ namespace xqemu_gui
                 launchDash = true;
             }
 
-            string skipAnims = menuSkipAnimation.Checked ? ",short-animation" : "";
+            string skipAnimString = skipAnim ? ",short-animation" : "";
+            string accel = HAXM ? ",accel=haxm:tcg" : "";
+            string gl = GL ? ",gl=on" : "";
 
             string usb = BuildUSBInput();
 
             Process xqemu = new Process();
             xqemu.StartInfo.FileName = @".\xqemu.exe";
             xqemu.StartInfo.Arguments = " -cpu pentium3"
-                + $" -machine xbox,bootrom={MCPX.Replace(@"\", @"\\")}{skipAnims}"
+                + $" -machine \"xbox,bootrom={MCPX.Replace("\\", "/")}{skipAnimString}{accel}\""
                 + " -m 64"
-                + $" -bios \"{BIOS.Replace(@"\", @"\\")}\""
-                + $" -drive index=0,media=disk,file={HDD.Replace(@"\", @"\\")},locked"
-                + " -drive index=1,media=cdrom," + ( launchDash ? "" : $"file={selectedISO.Replace(@"\", @"\\")}" )
-                + $" -usb{usb}";
+                + $" -bios \"{BIOS.Replace("\\", "/")}\""
+                + $" -drive \"index=0,media=disk,file={HDD.Replace("\\", "/")},locked\""
+                + " -drive \"index=1,media=cdrom," + ( launchDash ? "" : $"file={selectedISO.Replace("\\", "/")}" ) + "\""
+                + $" -usb{usb}"
+                + $" -display sdl{gl}";
+
+            File.WriteAllText(@".\debug.txt", xqemu.StartInfo.FileName + " " + xqemu.StartInfo.Arguments);
             xqemu.Start();
         }
 
         private void Main_Shown(object sender, EventArgs e)
         {
+            return;
             if (!File.Exists(@".\xqemu.exe"))
             {
                 if (MessageBox.Show(
@@ -198,6 +211,21 @@ namespace xqemu_gui
         private void MenuSkipAnimation_Click(object sender, EventArgs e)
         {
             configGeneral.Set("Skip_Animation", menuSkipAnimation.Checked);
+            skipAnim = menuSkipAnimation.Checked;
+            configSource.Save();
+        }
+
+        private void MenuHAXM_Click(object sender, EventArgs e)
+        {
+            configGeneral.Set("HAXM_Acceleration", menuHAXM.Checked);
+            HAXM = menuHAXM.Checked;
+            configSource.Save();
+        }
+
+        private void menuGL_Click(object sender, EventArgs e)
+        {
+            configGeneral.Set("GL", menuGL.Checked);
+            GL = menuGL.Checked;
             configSource.Save();
         }
 
@@ -224,11 +252,11 @@ namespace xqemu_gui
                     case 1:
                         continue; //build support for usb passthrough of original xbox controller
                     case 2:
-                        build += $" -device {magicTable[controller]},index={sdlIndex},port={port}";
+                        build += $" -device usb-hub,bus=usb-bus.1,port={port} -device {magicTable[controller]},index={sdlIndex},port={port}.2";
                         ++sdlIndex;
                         break;
                     case 3:
-                        build += $" -device {magicTable[controller]},port={port}";
+                        build += $" -device usb-hub,bus=usb-bus.1,port={port} -device {magicTable[controller]},port={port}.2";
                         break;
                     default:
                         continue;

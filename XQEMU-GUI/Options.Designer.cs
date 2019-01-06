@@ -38,7 +38,7 @@
             this.lblBIOSPath = new System.Windows.Forms.Label();
             this.btnBIOSSelect = new System.Windows.Forms.Button();
             this.tbxBIOSPath = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblHDDPath = new System.Windows.Forms.Label();
             this.btnHDDSelect = new System.Windows.Forms.Button();
             this.tbxHDDPath = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
@@ -57,16 +57,22 @@
             this.lblController3 = new System.Windows.Forms.Label();
             this.lblController2 = new System.Windows.Forms.Label();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.tabCLI = new System.Windows.Forms.TabPage();
+            this.lblPreview = new System.Windows.Forms.Label();
+            this.lblCustomArguments = new System.Windows.Forms.Label();
+            this.tbxCustomArguments = new System.Windows.Forms.TextBox();
+            this.tbxPreview = new System.Windows.Forms.TextBox();
             this.tctOptions.SuspendLayout();
             this.tabInput.SuspendLayout();
             this.tabGeneral.SuspendLayout();
+            this.tabCLI.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbxGamesPath
             // 
             this.tbxGamesPath.Location = new System.Drawing.Point(18, 33);
             this.tbxGamesPath.Name = "tbxGamesPath";
-            this.tbxGamesPath.Size = new System.Drawing.Size(190, 20);
+            this.tbxGamesPath.Size = new System.Drawing.Size(349, 20);
             this.tbxGamesPath.TabIndex = 1;
             // 
             // btnGamesSelect
@@ -76,7 +82,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGamesSelect.AutoSize = true;
             this.btnGamesSelect.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnGamesSelect.Location = new System.Drawing.Point(214, 31);
+            this.btnGamesSelect.Location = new System.Drawing.Point(373, 31);
             this.btnGamesSelect.Name = "btnGamesSelect";
             this.btnGamesSelect.Size = new System.Drawing.Size(26, 23);
             this.btnGamesSelect.TabIndex = 2;
@@ -109,7 +115,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMCPXSelect.AutoSize = true;
             this.btnMCPXSelect.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnMCPXSelect.Location = new System.Drawing.Point(214, 81);
+            this.btnMCPXSelect.Location = new System.Drawing.Point(373, 81);
             this.btnMCPXSelect.Name = "btnMCPXSelect";
             this.btnMCPXSelect.Size = new System.Drawing.Size(26, 23);
             this.btnMCPXSelect.TabIndex = 4;
@@ -121,7 +127,7 @@
             // 
             this.tbxMCPXPath.Location = new System.Drawing.Point(18, 83);
             this.tbxMCPXPath.Name = "tbxMCPXPath";
-            this.tbxMCPXPath.Size = new System.Drawing.Size(190, 20);
+            this.tbxMCPXPath.Size = new System.Drawing.Size(349, 20);
             this.tbxMCPXPath.TabIndex = 3;
             // 
             // lblBIOSPath
@@ -140,7 +146,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBIOSSelect.AutoSize = true;
             this.btnBIOSSelect.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBIOSSelect.Location = new System.Drawing.Point(214, 132);
+            this.btnBIOSSelect.Location = new System.Drawing.Point(373, 132);
             this.btnBIOSSelect.Name = "btnBIOSSelect";
             this.btnBIOSSelect.Size = new System.Drawing.Size(26, 23);
             this.btnBIOSSelect.TabIndex = 6;
@@ -152,17 +158,17 @@
             // 
             this.tbxBIOSPath.Location = new System.Drawing.Point(18, 134);
             this.tbxBIOSPath.Name = "tbxBIOSPath";
-            this.tbxBIOSPath.Size = new System.Drawing.Size(190, 20);
+            this.tbxBIOSPath.Size = new System.Drawing.Size(349, 20);
             this.tbxBIOSPath.TabIndex = 5;
             // 
-            // label1
+            // lblHDDPath
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 168);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 99;
-            this.label1.Text = "HDD Image";
+            this.lblHDDPath.AutoSize = true;
+            this.lblHDDPath.Location = new System.Drawing.Point(18, 168);
+            this.lblHDDPath.Name = "lblHDDPath";
+            this.lblHDDPath.Size = new System.Drawing.Size(63, 13);
+            this.lblHDDPath.TabIndex = 99;
+            this.lblHDDPath.Text = "HDD Image";
             // 
             // btnHDDSelect
             // 
@@ -171,7 +177,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHDDSelect.AutoSize = true;
             this.btnHDDSelect.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnHDDSelect.Location = new System.Drawing.Point(214, 182);
+            this.btnHDDSelect.Location = new System.Drawing.Point(373, 182);
             this.btnHDDSelect.Name = "btnHDDSelect";
             this.btnHDDSelect.Size = new System.Drawing.Size(26, 23);
             this.btnHDDSelect.TabIndex = 8;
@@ -183,14 +189,14 @@
             // 
             this.tbxHDDPath.Location = new System.Drawing.Point(18, 184);
             this.tbxHDDPath.Name = "tbxHDDPath";
-            this.tbxHDDPath.Size = new System.Drawing.Size(190, 20);
+            this.tbxHDDPath.Size = new System.Drawing.Size(349, 20);
             this.tbxHDDPath.TabIndex = 7;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(170, 251);
+            this.btnSave.Location = new System.Drawing.Point(335, 251);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(69, 23);
             this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -216,10 +222,11 @@
             // 
             this.tctOptions.Controls.Add(this.tabInput);
             this.tctOptions.Controls.Add(this.tabGeneral);
+            this.tctOptions.Controls.Add(this.tabCLI);
             this.tctOptions.Location = new System.Drawing.Point(1, 0);
             this.tctOptions.Name = "tctOptions";
             this.tctOptions.SelectedIndex = 0;
-            this.tctOptions.Size = new System.Drawing.Size(268, 245);
+            this.tctOptions.Size = new System.Drawing.Size(418, 245);
             this.tctOptions.TabIndex = 0;
             // 
             // tabInput
@@ -235,7 +242,7 @@
             this.tabInput.Location = new System.Drawing.Point(4, 22);
             this.tabInput.Name = "tabInput";
             this.tabInput.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInput.Size = new System.Drawing.Size(260, 219);
+            this.tabInput.Size = new System.Drawing.Size(410, 219);
             this.tabInput.TabIndex = 2;
             this.tabInput.Text = "Input";
             this.tabInput.UseVisualStyleBackColor = true;
@@ -338,7 +345,7 @@
             this.tabGeneral.Controls.Add(this.tbxGamesPath);
             this.tabGeneral.Controls.Add(this.btnGamesSelect);
             this.tabGeneral.Controls.Add(this.btnBIOSSelect);
-            this.tabGeneral.Controls.Add(this.label1);
+            this.tabGeneral.Controls.Add(this.lblHDDPath);
             this.tabGeneral.Controls.Add(this.tbxBIOSPath);
             this.tabGeneral.Controls.Add(this.tbxMCPXPath);
             this.tabGeneral.Controls.Add(this.lblBIOSPath);
@@ -349,16 +356,64 @@
             this.tabGeneral.Location = new System.Drawing.Point(4, 22);
             this.tabGeneral.Name = "tabGeneral";
             this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeneral.Size = new System.Drawing.Size(260, 219);
+            this.tabGeneral.Size = new System.Drawing.Size(410, 219);
             this.tabGeneral.TabIndex = 1;
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
+            // 
+            // tabCLI
+            // 
+            this.tabCLI.Controls.Add(this.lblPreview);
+            this.tabCLI.Controls.Add(this.lblCustomArguments);
+            this.tabCLI.Controls.Add(this.tbxCustomArguments);
+            this.tabCLI.Controls.Add(this.tbxPreview);
+            this.tabCLI.Location = new System.Drawing.Point(4, 22);
+            this.tabCLI.Name = "tabCLI";
+            this.tabCLI.Size = new System.Drawing.Size(410, 219);
+            this.tabCLI.TabIndex = 3;
+            this.tabCLI.Text = "CLI";
+            this.tabCLI.UseVisualStyleBackColor = true;
+            this.tabCLI.Enter += new System.EventHandler(this.TabCLI_Enter);
+            // 
+            // lblPreview
+            // 
+            this.lblPreview.AutoSize = true;
+            this.lblPreview.Location = new System.Drawing.Point(7, 52);
+            this.lblPreview.Name = "lblPreview";
+            this.lblPreview.Size = new System.Drawing.Size(94, 13);
+            this.lblPreview.TabIndex = 3;
+            this.lblPreview.Text = "Command preview";
+            // 
+            // lblCustomArguments
+            // 
+            this.lblCustomArguments.AutoSize = true;
+            this.lblCustomArguments.Location = new System.Drawing.Point(7, 9);
+            this.lblCustomArguments.Name = "lblCustomArguments";
+            this.lblCustomArguments.Size = new System.Drawing.Size(95, 13);
+            this.lblCustomArguments.TabIndex = 2;
+            this.lblCustomArguments.Text = "Custom Arguments";
+            // 
+            // tbxCustomArguments
+            // 
+            this.tbxCustomArguments.Location = new System.Drawing.Point(3, 25);
+            this.tbxCustomArguments.Name = "tbxCustomArguments";
+            this.tbxCustomArguments.Size = new System.Drawing.Size(404, 20);
+            this.tbxCustomArguments.TabIndex = 1;
+            // 
+            // tbxPreview
+            // 
+            this.tbxPreview.Location = new System.Drawing.Point(3, 68);
+            this.tbxPreview.Multiline = true;
+            this.tbxPreview.Name = "tbxPreview";
+            this.tbxPreview.ReadOnly = true;
+            this.tbxPreview.Size = new System.Drawing.Size(404, 148);
+            this.tbxPreview.TabIndex = 0;
             // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(266, 280);
+            this.ClientSize = new System.Drawing.Size(416, 280);
             this.Controls.Add(this.tctOptions);
             this.Controls.Add(this.btnSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -370,6 +425,8 @@
             this.tabInput.PerformLayout();
             this.tabGeneral.ResumeLayout(false);
             this.tabGeneral.PerformLayout();
+            this.tabCLI.ResumeLayout(false);
+            this.tabCLI.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -384,7 +441,7 @@
         private System.Windows.Forms.Label lblBIOSPath;
         private System.Windows.Forms.Button btnBIOSSelect;
         private System.Windows.Forms.TextBox tbxBIOSPath;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblHDDPath;
         private System.Windows.Forms.Button btnHDDSelect;
         private System.Windows.Forms.TextBox tbxHDDPath;
         private System.Windows.Forms.Button btnSave;
@@ -403,5 +460,10 @@
         private System.Windows.Forms.Label lblController4;
         private System.Windows.Forms.Label lblController3;
         private System.Windows.Forms.Label lblController2;
+        private System.Windows.Forms.TabPage tabCLI;
+        private System.Windows.Forms.Label lblPreview;
+        private System.Windows.Forms.Label lblCustomArguments;
+        private System.Windows.Forms.TextBox tbxCustomArguments;
+        private System.Windows.Forms.TextBox tbxPreview;
     }
 }

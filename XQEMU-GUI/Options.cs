@@ -3,6 +3,16 @@ using System.IO;
 using System.Windows.Forms;
 using Nini.Config;
 
+/*
+    -drive if=none,id=C1A,file=/mnt/c/temp/mu1.bin,format=raw \
+    -drive if=none,id=C1B,file=/mnt/c/temp/mu2.bin,format=raw \
+ 
+    -device usb-hub,bus=usb-bus.1,port=3 \   -- controller on port 1
+    -device usb-xbox-gamepad,port=3.2 \      -- X.2 -- controller
+    -device usb-storage,port=3.4,drive=C1A \ -- X.4 -- "MU port A"
+    -device usb-storage,port=3.3,drive=C1B \ -- X.3 -- "MU port B"
+ */
+
 namespace xqemu_gui
 {
     public partial class Options : Form
@@ -131,6 +141,7 @@ namespace xqemu_gui
 
             configGeneral.Set("Recent_ISO", "");
             configGeneral.Set("Skip_Animation", false);
+            configGeneral.Set("HAXM_Acceleration", false);
             configGeneral.Set("Games_Folder", "");
             configGeneral.Set("MCPX", "");
             configGeneral.Set("BIOS", "");
@@ -159,6 +170,74 @@ namespace xqemu_gui
             if (!File.Exists(tbxHDDPath.Text)) return false;
 
             return true;
+        }
+
+        private string BuildUSBInput()
+        {
+            string build = "";
+            string[] magicTable = { "", "usb-host", "usb-xbox-gamepad-sdl", "usb-xbox-gamepad" };
+
+            int[] controllers = {
+                configController.GetInt("Controller3", 0) > 3 ? 0 : configController.GetInt("Controller3", 0),
+                configController.GetInt("Controller4", 0) > 3 ? 0 : configController.GetInt("Controller4", 0),
+                configController.GetInt("Controller1", 1) > 3 ? 1 : configController.GetInt("Controller1", 1),
+                configController.GetInt("Controller2", 0) > 3 ? 0 : configController.GetInt("Controller2", 0),
+            };
+
+            int sdlIndex = 0;
+            int port = 0;
+
+            foreach (int controller in controllers)
+            {
+                ++port;
+                switch (controller)
+                {
+                    case 1:
+                        continue; //build support for usb passthrough of original xbox controller
+                    case 2:
+                        build += $" -device usb-hub,bus=usb-bus.1,port=3 -device {magicTable[controller]},index={sdlIndex},port={port}.2";
+                        ++sdlIndex;
+                        break;
+                    case 3:
+                        build += $" -device usb-hub,bus=usb-bus.1,port=3 -device {magicTable[controller]},port={port}.2";
+                        break;
+                    default:
+                        continue;
+                }
+            }
+
+            if (build == "") build += "-device usb-xbox-gamepad,port=3";
+
+            return build;
+        }
+
+        private void TabCLI_Enter(object sender, EventArgs e)
+        {
+            string MCPX = configGeneral.GetString("MCPX", "");
+            string BIOS = configGeneral.GetString("BIOS", "");
+            string HDD = configGeneral.GetString("HDD", "");
+
+            string selectedISO = configGeneral.GetString("Recent_ISO", "");
+            bool launchDash = false;
+            if (selectedISO.Length == 0)
+            {
+                launchDash = true;
+            }
+
+            string skipAnimString = configGeneral.GetBoolean("Skip_Animation", false) ? ",short-animation" : "";
+            string accel = configGeneral.GetBoolean("HAXM_Acceleration", false) ? ",accel=haxm:tcg" : "";
+            string gl = configGeneral.GetBoolean("GL", false) ? ",gl=on" : "";
+
+            string usb = BuildUSBInput();
+
+            tbxPreview.Text = ".\\xqemu.exe -cpu pentium3"
+                + $" -machine \"xbox,bootrom={MCPX.Replace("\\", "/")}{skipAnimString}{accel}\""
+                + " -m 64"
+                + $" -bios \"{BIOS.Replace("\\", "/")}\""
+                + $" -drive \"index=0,media=disk,file={HDD.Replace("\\", "/")},locked\""
+                + " -drive \"index=1,media=cdrom," + (launchDash ? "" : $"file={selectedISO.Replace("\\", "/")}") + "\""
+                + $" -usb{usb}"
+                + $" -display sdl{gl}";
         }
     }
 }

@@ -32,16 +32,19 @@
             this.mstMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpenFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.ejectISOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSkipAnimation = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuGL = new System.Windows.Forms.ToolStripMenuItem();
+            this.hardwareAccelerationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHAXM = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.btnStart = new System.Windows.Forms.Button();
             this.lblLoaded = new System.Windows.Forms.Label();
             this.openISODialog = new System.Windows.Forms.OpenFileDialog();
             this.messageQueue1 = new System.Messaging.MessageQueue();
-            this.ejectISOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mstMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,15 +72,23 @@
             // 
             this.menuOpenFile.Name = "menuOpenFile";
             this.menuOpenFile.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.menuOpenFile.Size = new System.Drawing.Size(180, 22);
+            this.menuOpenFile.Size = new System.Drawing.Size(179, 22);
             this.menuOpenFile.Text = "Open ISO image";
             this.menuOpenFile.Click += new System.EventHandler(this.MenuOpenFile_Click);
+            // 
+            // ejectISOToolStripMenuItem
+            // 
+            this.ejectISOToolStripMenuItem.Name = "ejectISOToolStripMenuItem";
+            this.ejectISOToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
+            this.ejectISOToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.ejectISOToolStripMenuItem.Text = "Eject ISO";
+            this.ejectISOToolStripMenuItem.Click += new System.EventHandler(this.EjectISOToolStripMenuItem_Click);
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
             this.menuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuExit.Size = new System.Drawing.Size(180, 22);
+            this.menuExit.Size = new System.Drawing.Size(179, 22);
             this.menuExit.Text = "Exit";
             this.menuExit.Click += new System.EventHandler(this.MenuExit_Click);
             // 
@@ -85,6 +96,8 @@
             // 
             this.configToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuSkipAnimation,
+            this.menuGL,
+            this.hardwareAccelerationToolStripMenuItem,
             this.toolStripSeparator1,
             this.menuOptions});
             this.configToolStripMenuItem.Name = "configToolStripMenuItem";
@@ -95,19 +108,43 @@
             // 
             this.menuSkipAnimation.CheckOnClick = true;
             this.menuSkipAnimation.Name = "menuSkipAnimation";
-            this.menuSkipAnimation.Size = new System.Drawing.Size(180, 22);
+            this.menuSkipAnimation.Size = new System.Drawing.Size(194, 22);
             this.menuSkipAnimation.Text = "Skip Bootanimation";
             this.menuSkipAnimation.Click += new System.EventHandler(this.MenuSkipAnimation_Click);
+            // 
+            // menuGL
+            // 
+            this.menuGL.CheckOnClick = true;
+            this.menuGL.Name = "menuGL";
+            this.menuGL.Size = new System.Drawing.Size(194, 22);
+            this.menuGL.Text = "Enable GL";
+            this.menuGL.Click += new System.EventHandler(this.menuGL_Click);
+            // 
+            // hardwareAccelerationToolStripMenuItem
+            // 
+            this.hardwareAccelerationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuHAXM});
+            this.hardwareAccelerationToolStripMenuItem.Name = "hardwareAccelerationToolStripMenuItem";
+            this.hardwareAccelerationToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.hardwareAccelerationToolStripMenuItem.Text = "Hardware Acceleration";
+            // 
+            // menuHAXM
+            // 
+            this.menuHAXM.CheckOnClick = true;
+            this.menuHAXM.Name = "menuHAXM";
+            this.menuHAXM.Size = new System.Drawing.Size(109, 22);
+            this.menuHAXM.Text = "HAXM";
+            this.menuHAXM.Click += new System.EventHandler(this.MenuHAXM_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(191, 6);
             // 
             // menuOptions
             // 
             this.menuOptions.Name = "menuOptions";
-            this.menuOptions.Size = new System.Drawing.Size(180, 22);
+            this.menuOptions.Size = new System.Drawing.Size(194, 22);
             this.menuOptions.Text = "Options";
             this.menuOptions.Click += new System.EventHandler(this.MenuOptions_Click);
             // 
@@ -146,14 +183,6 @@
             this.messageQueue1.MessageReadPropertyFilter.LookupId = true;
             this.messageQueue1.SynchronizingObject = this;
             // 
-            // ejectISOToolStripMenuItem
-            // 
-            this.ejectISOToolStripMenuItem.Name = "ejectISOToolStripMenuItem";
-            this.ejectISOToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
-            this.ejectISOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ejectISOToolStripMenuItem.Text = "Eject ISO";
-            this.ejectISOToolStripMenuItem.Click += new System.EventHandler(this.EjectISOToolStripMenuItem_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,6 +220,9 @@
         private System.Windows.Forms.OpenFileDialog openISODialog;
         private System.Messaging.MessageQueue messageQueue1;
         private System.Windows.Forms.ToolStripMenuItem ejectISOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hardwareAccelerationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuHAXM;
+        private System.Windows.Forms.ToolStripMenuItem menuGL;
     }
 }
 
